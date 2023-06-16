@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import Header from './Header.jsx'
+import Filters from './Filters.jsx'
 import { Routes, useNavigate, Route } from 'react-router-dom'
 
 const App = () => {
