@@ -26,8 +26,10 @@ const App = () => {
             <Routes />
             {/* <Route path="/home" element={<Home />} /> */}
             <Routes />
+            <Filters />
         </>
     )
 }
 
 export default App
+
