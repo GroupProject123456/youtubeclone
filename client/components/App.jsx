@@ -4,7 +4,7 @@ import Header from './Header.jsx'
 import Filters from './Filters.jsx'
 import { Routes, useNavigate, Route } from 'react-router-dom'
 
-const App = () => {
+const Apps = () => {
     //   useEffect(() => {
     //     getVideos();
     //   }, []);
@@ -31,5 +31,6 @@ const App = () => {
     )
 }
 
-export default App
+export default Apps
+
 

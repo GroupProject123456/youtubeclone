@@ -44,7 +44,7 @@ body {
 .filters::-webkit-scrollbar{
   display: none;
 }
-
+/* 
 .filter-options{
   flex: 0 0 auto;
   padding: 10px 20px;
@@ -61,4 +61,4 @@ body {
 .filter-options.active{
   color: #fff;
   background: #242424;
-}
+} */
