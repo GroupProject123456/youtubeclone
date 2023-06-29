@@ -4,7 +4,7 @@ import Header from "./Header.jsx";
 import { Routes, useNavigate, Route } from "react-router-dom";
 import SingleVideo from "./SingleVideo.jsx";
 import VideoDetails from "./SingleVideoPage/VideoDetails.jsx";
-import Filters from './Filters';
+import Filters from "./Filters";
 
 const App = () => {
 	const [videos, setVideos] = useState(null);
@@ -61,7 +61,6 @@ const App = () => {
 
 	return (
 		<>
-
 			<Header setVideos={setVideos} fetchVideos={fetchVideos} />
 			<Filters setVideos={setVideos} />
 			<Routes>
