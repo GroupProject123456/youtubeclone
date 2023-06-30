@@ -8,4 +8,5 @@ export const options = {
 
 export default function () {
 	http.get(`http://localhost:3000/api/videos`);
+	sleep(0.2);
 }

@@ -18,7 +18,7 @@ const client = createClient();
 client.on("error", (err) => console.log("Redis Client Error", err));
 
 await client.connect();
-
+console.log("with redis");
 // Check the number of available CPU.
 // const numCPUs = cpus().length;
 
@@ -47,7 +47,7 @@ else {
 		try {
 			if ((await client.exists("videos")) === 1) {
 				const videos = await client.get("videos");
-				console.log("using cache");
+				// console.log("using cache");
 				res.send(JSON.parse(videos));
 			} else {
 				const data = await sql`SELECT * FROM youtubevideos`;
