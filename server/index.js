@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 import axios from "axios";
 import cors from "cors";
 import { createClient } from "redis";
-import cluster from "cluster";
-import { cpus } from "os";
+// import cluster from "cluster";
+// import { cpus } from "os";
 
 dotenv.config({ path: "../.env" });
 
@@ -20,10 +20,11 @@ client.on("error", (err) => console.log("Redis Client Error", err));
 await client.connect();
 
 // Check the number of available CPU.
-const numCPUs = cpus().length;
+// const numCPUs = cpus().length;
 
 //// For Master process
-if (cluster.isPrimary) {
+// if (cluster.isPrimary) {
+if (false) {
 	console.log(`Primary ${process.pid} is running`);
 
 	// Fork workers.
@@ -44,15 +45,15 @@ else {
 
 	app.get("/api/videos", async (req, res) => {
 		try {
-			// if ((await client.exists("videos")) === 1) {
-			// 	const videos = await client.get("videos");
-			// 	console.log("using cache");
-			// 	res.send(JSON.parse(videos));
-			// } else {
-			const data = await sql`SELECT * FROM youtubevideos`;
-			client.set("videos", JSON.stringify(data));
-			res.send(data);
-			// }
+			if ((await client.exists("videos")) === 1) {
+				const videos = await client.get("videos");
+				console.log("using cache");
+				res.send(JSON.parse(videos));
+			} else {
+				const data = await sql`SELECT * FROM youtubevideos`;
+				client.set("videos", JSON.stringify(data));
+				res.send(data);
+			}
 		} catch (error) {
 			console.error(error);
 			res.status(500).send("An error occurred");
