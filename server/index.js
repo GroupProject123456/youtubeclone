@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 import axios from "axios";
 import cors from "cors";
 import { createClient } from "redis";
-// import cluster from "cluster";
-// import { cpus } from "os";
+import cluster from "cluster";
+import { cpus } from "os";
 
 dotenv.config({ path: "../.env" });
 
@@ -20,11 +20,10 @@ client.on("error", (err) => console.log("Redis Client Error", err));
 await client.connect();
 console.log("with redis");
 // Check the number of available CPU.
-// const numCPUs = cpus().length;
+const numCPUs = cpus().length;
 
 //// For Master process
-// if (cluster.isPrimary) {
-if (false) {
+if (cluster.isPrimary) {
 	console.log(`Primary ${process.pid} is running`);
 
 	// Fork workers.
