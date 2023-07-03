@@ -5,7 +5,7 @@ dotenv.config({ path: "../.env" });
 export default {
   server: {
     proxy: {
-      "/api": `https://server-youtube-clone.onrender.com`,
+      "/api": `http://localhost:${process.env.PORT}`,
     },
   },
   cacheDir: "../node_modules/.vite",
