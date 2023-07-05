@@ -21,16 +21,16 @@ app.use(express.json());
 
 app.get("/api/videos", async (req, res) => {
   try {
-    // if ((await client.exists("videos")) === 1) {
-    //   const videos = await client.get("videos");
-    //   console.log("using cache");
-    //   res.send(JSON.parse(videos));
-    // } else {
-    const data = await sql`SELECT * FROM youtubevideos`;
-    // await client.set("videos", JSON.stringify(data), "EX", 3600); // Set key to hold the string value and set an expiration time of 1 hour
-    console.log("using database");
-    res.send(data);
-    // }
+    if ((await client.exists("videos")) === 1) {
+      const videos = await client.get("videos");
+      console.log("using cache");
+      res.send(JSON.parse(videos));
+    } else {
+      const data = await sql`SELECT * FROM youtubevideos`;
+      await client.set("videos", JSON.stringify(data), "EX", 3600); // Set key to hold the string value and set an expiration time of 1 hour
+      console.log("using database");
+      res.send(data);
+    }
   } catch (error) {
     console.error(error);
     res.status(500).send("An error occurred");
